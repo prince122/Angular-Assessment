@@ -1,0 +1,45 @@
+
+
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+  <input type="text" class="form-control form-control-lg" id="word" [(ngModel)]='word' (keyup.enter)='Search(word)'
+    placeholder="Type Word">
+  <button type="submit" class="btn btn-primary mb-2 mt-2" (click)='Search(word)'>Search</button>
+
+  <div *ngIf="totalItem" class="col-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+    <pagination-template class="my-pagination" id="foo" #p="paginationApi" (pageChange)="cp= $event">
+  
+      <div class="row">
+        <div class="pagination-previous col-4" [class.disabled]="p.isFirstPage()">
+          <a [class.disabled]="p.isFirstPage()" (click)="p.previous();onLeft()">
+            <img src="assets/images/left-arrow.svg" alt=""> </a>
+        </div>
+  
+        <div class="showing col-4">
+          Showing <span class="bold">{{cp}} </span> of
+          <span class="bold"> {{totalItem}} </span> results
+        </div>
+  
+        <div class="pagination-next col-4" [class.disabled]="p.isLastPage()&& DisableNext">
+          <a *ngIf="!p.isLastPage()" (click)="p.next();onRight()"><img src="assets/images/right-arrow.svg" alt=""> </a>
+        </div>
+      </div>
+  
+    </pagination-template>
+  
+  </div>
+</div>
+
+
+
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 grid"
+  data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200,"gutter":20,"percentPosition": true  }'>
+  <!-- <div class="col"> -->
+  <div class="grid-item card" [class]="data.class" [style.background-color]="data.color"
+    *ngFor="let data of ColorData | paginate : {id: 'foo', itemsPerPage:ItemPerPage , currentPage: cp,totalItems: totalItem}">
+    <p>{{data.color}}</p>
+  </div>
+  <!-- </div> -->
+
+</div>
+
+
