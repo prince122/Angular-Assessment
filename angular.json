@@ -121,6 +121,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Angular-technical-ass"
+    }
+  },
+  "defaultProject": "Angular-technical-ass",
+  "cli": {
+    "analytics": false
+  }
 }
